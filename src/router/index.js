@@ -5,12 +5,12 @@ import Login from "../views/Login.vue"
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Registro',
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/compras',
+    name: 'Compras',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
