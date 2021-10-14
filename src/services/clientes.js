@@ -1,13 +1,7 @@
-class ClienteService{
-    cliente={};
-    listado=[];
+import axios from "axios";
 
-    constructor(){
-        this.listado=[
-            {nombre:"Juan", usuario:"juan", password:"123456"},
-            {nombre:"Maria", usuario:"maria", password:"654321"},
-        ]
-    }
+class ClienteService{
+    url="http://localhost:8000/cliente";
 
     validar(usuario, password){
         for (const unCliente of this.listado) {
@@ -21,7 +15,7 @@ class ClienteService{
     }
 
     obtenerCliente(){
-        return this.cliente;
+        return axios.get(`${this.url}/2`);
     }
 
 }export default new ClienteService();

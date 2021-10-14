@@ -1,20 +1,11 @@
+import axios from "axios";
+
 class ProductoService{
-    productos=[];
-
-    constructor(){
-        this.productos=[
-            { nombre: "Disco Duro", precio: 200000 },
-            { nombre: "Teclado", precio: 100000 },
-            { nombre: "Mouse", precio: 80000 },
-            { nombre: "Pantalla", precio: 800000 },
-            { nombre: "Memoria USB", precio: 50000 }
-        ];
-    }
-
+    url="http://localhost:8000/producto";
     // Spring boot
 
     obtenerTodos(){
-        return this.productos;
+        return axios.get(`${this.url}/todos`);
     }
 
 }export default new ProductoService();
