@@ -4,7 +4,7 @@
     <div id="nav">
       <router-link to="/">Registrar Compra</router-link> |
       <router-link to="/compras">Lista de Compras</router-link> |
-      <router-link :to="{ name: 'Login' }">Cerrar Sesión</router-link>
+      <a @click.prevent="cerrarSesion" href="#">Cerrar Sesión</a>
     </div>
     <h1>{{ titulo }} - Bienvenid@ {{cliente.nombre}}</h1>
   </header>
@@ -64,14 +64,12 @@ export default {
         }).catch((error)=>{
             console.log("Error Envios",error);
         });
-    this.listaCompras= CompraService.obtenerTodos();
   },
   data() {
     return {
       cliente:{},
       listaProductos: [],
       titulo: "Registro de Compra",
-      listaCompras: [],
       compra: {
         cliente: {},
         producto: {},
@@ -124,18 +122,20 @@ export default {
       this.compra.total = valorEnvio + subtotal - this.compra.descuento;
 
       CompraService.registrar(this.compra).then((respuesta)=>{
-            this.compra=respuesta.data;
             this.$router.push({name:"Compras"});
         }).catch((error)=>{
             console.log("Error Compra",error);
         });
 
-      this.listaCompras.push(this.compra);
 
         this.limpiarFormulario();
 
 
     },
+    cerrarSesion(){
+      localStorage.clear();
+      this.$router.push({name:"Login"});
+    }
   },
   name: "Home",
   components: {},
@@ -147,13 +147,12 @@ export default {
   display: grid;
   grid-template-columns: 6rem 10rem;
   row-gap: 1rem;
+  justify-content: center;
 }
 
-main {
-  display: grid;
-  grid-template-columns: 4fr 8fr;
-  column-gap: 1rem;
-  padding: 2rem;
+main div {
+  margin: auto;
+  text-align: center;
 }
 
 table {

@@ -18,4 +18,11 @@ class CompraService {
         return axios.post(`${this.url}`, compra);
     }
 
+    obtenerPorCliente(){
+
+        let id = localStorage.cliente;
+        return axios.get(`${this.url}/cliente/${id}`);
+
+    }
+
 } export default new CompraService();
